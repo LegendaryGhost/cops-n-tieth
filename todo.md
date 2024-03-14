@@ -1,0 +1,17 @@
+- [ ] Game map
+    - [ ] Make the graph of the map
+      - [ ] Graph
+      - [ ] Vertices
+      - [ ] Edges
+      - [ ] Adjacency list
+    - [ ] Represent units on the map
+    - [ ] Draw the map
+- [ ] Unit
+  - [ ] Move units
+  - [ ] Make the difference between cops and thief
+- [ ] Game
+  - [ ] End the game when the thief comes back to the middle of the map
+  - [ ] End the game when the thief can't move anymore
+- [ ] Cops bot
+  - [ ] Game tree
+  - [ ] Minimax algorithm
