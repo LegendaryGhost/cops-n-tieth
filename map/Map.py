@@ -1,11 +1,13 @@
-from Edge import Edge
+from map.Edge import Edge
 from map.Graph import Graph
+from unit.Cop import Cop
+from unit.Thief import Thief
 
 
 class Map:
-    graph = None
 
     def __init__(self):
+        self._graph = None
         self.set_up_graph()
 
     def set_up_graph(self):
@@ -106,4 +108,33 @@ class Map:
         edges[20].add_neighbor(edges[19])
         edges[20].add_neighbor(edges[17])
 
-        self.graph = Graph(edges)
+        edges[5].unit = Cop()
+        edges[9].unit = Cop()
+        edges[11].unit = Cop()
+        edges[10].unit = Thief()
+
+        self._graph = Graph(edges)
+
+    def draw(self):
+        edges = self._graph.edges
+
+        print('            ' + str(edges[0]) + '----' + str(edges[2]) + '----' + str(edges[3]))
+        print('          /   \\   |   /   \\')
+        print('        /       \\ | /       \\')
+        print('      /           ' + str(edges[3]) + '          \\')
+        print('    /             |             \\')
+        print('  /               |               \\')
+        print(str(edges[4]) + '                ' + str(edges[5]) + '                ' + str(edges[6]))
+        print('| \\             / | \\             / |')
+        print('|   \\         /   |   \\         /   |')
+        print(str(edges[7]) + '----' + str(edges[8]) + '----' + str(edges[9]) + '----' + str(edges[10]) + '----'
+              + str(edges[11]) + '----' + str(edges[12]) + '----' + str(edges[13]))
+        print('|   /         \\   |   /         \\   |')
+        print('| /             \\ | /             \\ |')
+        print(str(edges[14]) + '                ' + str(edges[15]) + '                ' + str(edges[16]))
+        print('  \\               |               /')
+        print('    \\             |             /')
+        print('      \\           ' + str(edges[17]) + '          /')
+        print('        \\       / | \\       /')
+        print('          \\   /   |   \\   /')
+        print('            ' + str(edges[18]) + '----' + str(edges[19]) + '----' + str(edges[20]))

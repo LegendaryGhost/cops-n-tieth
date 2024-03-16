@@ -4,14 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="42f562a8-74d9-467c-b1ee-774a0dc9b20b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/map/Edge.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/map/Graph.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/map/Map.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/map/__init__.py" afterDir="false" />
+    <list default="true" id="42f562a8-74d9-467c-b1ee-774a0dc9b20b" name="Changes" comment="Map graph">
+      <change afterPath="$PROJECT_DIR$/unit/Cop.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/unit/Thief.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/unit/Unit.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/unit/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/map/Edge.py" beforeDir="false" afterPath="$PROJECT_DIR$/map/Edge.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/map/Graph.py" beforeDir="false" afterPath="$PROJECT_DIR$/map/Graph.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/map/Map.py" beforeDir="false" afterPath="$PROJECT_DIR$/map/Map.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/todo.md" beforeDir="false" afterPath="$PROJECT_DIR$/todo.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -41,14 +42,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python.main.executor&quot;: &quot;Debug&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.main.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="copsNTieth" />
@@ -89,6 +90,15 @@
       <option name="presentableId" value="Default" />
       <updated>1710424301318</updated>
     </task>
+    <task id="LOCAL-00001" summary="Map graph">
+      <option name="closed" value="true" />
+      <created>1710592876403</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1710592876403</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -101,5 +111,20 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Map graph" />
+    <option name="LAST_COMMIT_MESSAGE" value="Map graph" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <default-breakpoints>
+        <breakpoint type="python-exception">
+          <properties notifyOnTerminate="true" exception="BaseException">
+            <option name="notifyOnTerminate" value="true" />
+          </properties>
+        </breakpoint>
+      </default-breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
