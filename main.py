@@ -1,5 +1,5 @@
-from map.Map import Map
+from Game import Game
 
 if __name__ == '__main__':
-    game_map = Map()
-    game_map.draw()
+    game = Game()
+    game.start()

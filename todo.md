@@ -6,10 +6,11 @@
       - [x] Adjacency list
     - [x] Represent units on the map
     - [x] Draw the map
-- [ ] Unit
-  - [ ] Move units
+- [x] Unit
+  - [x] Move units on the map
   - [x] Make the difference between cops and thief
-- [ ] Game
+- [x] Game
+  - [x] Main game loop
   - [ ] End the game when the thief comes back to the middle of the map
   - [ ] End the game when the thief can't move anymore
 - [ ] Cops bot

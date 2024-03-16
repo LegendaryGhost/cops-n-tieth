@@ -8,6 +8,8 @@ class Map:
 
     def __init__(self):
         self._graph = None
+        self._cops = [Cop() for i in range(3)]
+        self._thief = Thief()
         self.set_up_graph()
 
     def set_up_graph(self):
@@ -108,10 +110,14 @@ class Map:
         edges[20].add_neighbor(edges[19])
         edges[20].add_neighbor(edges[17])
 
-        edges[5].unit = Cop()
-        edges[9].unit = Cop()
-        edges[11].unit = Cop()
-        edges[10].unit = Thief()
+        edges[5].unit = self._cops[0]
+        self._cops[0].location = edges[5]
+        edges[9].unit = self._cops[1]
+        self._cops[1].location = edges[9]
+        edges[11].unit = self._cops[2]
+        self._cops[2].location = edges[11]
+        edges[10].unit = self._thief
+        self._thief.location = edges[10]
 
         self._graph = Graph(edges)
 
@@ -138,3 +144,21 @@ class Map:
         print('        \\       / | \\       /')
         print('          \\   /   |   \\   /')
         print('            ' + str(edges[18]) + '----' + str(edges[19]) + '----' + str(edges[20]))
+
+    def move_unit(self, starting_edge_num: int, ending_edge_num: int):
+        starting_edge = self._graph.edges[starting_edge_num]
+        ending_edge = self._graph.edges[ending_edge_num]
+
+        if not starting_edge.is_occupied():
+            raise Exception("There's no unit to move on the edge " + str(starting_edge_num))
+
+        if ending_edge.is_occupied():
+            raise Exception("The edge " + str(ending_edge_num) + " is already occupied")
+
+        ending_edge.unit = starting_edge.unit
+        starting_edge.unit = None
+        ending_edge.unit.location = ending_edge
+
+    @property
+    def thief(self):
+        return self._thief
