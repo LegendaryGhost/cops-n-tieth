@@ -1,9 +1,9 @@
 - [ ] Game map
-    - [ ] Make the graph of the map
-      - [ ] Graph
-      - [ ] Vertices
-      - [ ] Edges
-      - [ ] Adjacency list
+    - [x] Make the graph of the map
+      - [x] Graph
+      - [x] Vertices
+      - [x] Edges
+      - [x] Adjacency list
     - [ ] Represent units on the map
     - [ ] Draw the map
 - [ ] Unit
