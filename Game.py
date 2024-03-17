@@ -1,3 +1,5 @@
+from math import inf
+
 from map.Map import Map
 
 
@@ -16,11 +18,11 @@ class Game:
             self._map.draw()
             print()
             game_stopped = self.ask_user_action()
-            thief_escaped = self._map.thief.escaped()
+            thief_escaped = self._map.thief.escaped
             if game_stopped or thief_escaped:
                 break
             self.move_cops()
-            thief_can_move = self._map.thief.can_move()
+            thief_can_move = self._map.thief.can_move
 
         print()
         self._map.draw()
@@ -35,7 +37,7 @@ class Game:
 
     def get_available_options(self):
         options = ['Q']
-        for edges in self._map.thief.possible_paths():
+        for edges in self._map.thief.possible_paths:
             options.append(str(edges.number))
         return options
 
@@ -64,7 +66,26 @@ class Game:
         return False
 
     def move_cops(self):
-        for move in self._map.thief_moves():
-            print()
-            move.draw()
-            print()
+        correct_move = self._map
+        correct_move_score = -inf
+        for move in self._map.cops_moves():
+            score = self.minimax(move, 4, False)
+            if score > correct_move_score:
+                correct_move = move
+                correct_move_score = score
+        self._map = correct_move
+
+    def minimax(self, map_state: Map, depth, should_maximize):
+        if depth == 0 or not map_state.thief.can_move or map_state.thief.escaped:
+            return map_state.evaluate()
+
+        if should_maximize:
+            value = -inf
+            for move in map_state.cops_moves():
+                value = max(value, self.minimax(move, depth - 1, False))
+            return value
+        else:
+            value = inf
+            for move in map_state.thief_moves():
+                value = min(value, self.minimax(move, depth - 1, True))
+            return value

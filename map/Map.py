@@ -1,3 +1,5 @@
+from math import inf
+
 from map.Edge import Edge
 from map.Graph import Graph
 from unit.Cop import Cop
@@ -124,7 +126,7 @@ class Map:
     def draw(self):
         edges = self._graph.edges
 
-        print('            ' + str(edges[0]) + '----' + str(edges[2]) + '----' + str(edges[3]))
+        print('            ' + str(edges[0]) + '----' + str(edges[1]) + '----' + str(edges[2]))
         print('          /   \\   |   /   \\')
         print('        /       \\ | /       \\')
         print('      /           ' + str(edges[3]) + '          \\')
@@ -149,10 +151,10 @@ class Map:
         starting_edge = self._graph.edges[starting_edge_num]
         ending_edge = self._graph.edges[ending_edge_num]
 
-        if not starting_edge.is_occupied():
+        if not starting_edge.is_occupied:
             raise Exception("There's no unit to move on the edge " + str(starting_edge_num))
 
-        if ending_edge.is_occupied():
+        if ending_edge.is_occupied:
             raise Exception("The edge " + str(ending_edge_num) + " is already occupied")
 
         ending_edge.unit = starting_edge.unit
@@ -163,16 +165,20 @@ class Map:
     def thief(self):
         return self._thief
 
+    @property
+    def graph(self):
+        return self._graph
+
     def cops_moves(self):
         moves = []
-        thief_pos = self.thief.location.number
+        thief_pos = self._thief.location.number
         for index in range(len(self._cops)):
             cops_pos = [
                 self._cops[0].location.number,
                 self._cops[1].location.number,
                 self._cops[2].location.number
             ]
-            for edge in self._cops[index].possible_paths():
+            for edge in self._cops[index].possible_paths:
                 cops_pos[index] = edge.number
                 moves.append(Map(cops_pos[0], cops_pos[1], cops_pos[2], thief_pos))
 
@@ -185,8 +191,24 @@ class Map:
             self._cops[1].location.number,
             self._cops[2].location.number
         ]
-        for edge in self.thief.possible_paths():
+        for edge in self._thief.possible_paths:
             thief_pos = edge.number
             moves.append(Map(cops_pos[0], cops_pos[1], cops_pos[2], thief_pos))
 
         return moves
+
+    def evaluate(self):
+        if not self._thief.can_move:
+            return inf
+
+        if self._thief.escaped:
+            return -inf
+
+        score = 0
+        for cop in self._cops:
+            score -= len(cop.path_to(self, self._thief.location)) - 1
+
+        score -= len(self._thief.possible_paths) * 10
+        # score -= len(self._thief.path_to(self, self._graph.edges[Thief.center])) - 1
+
+        return score

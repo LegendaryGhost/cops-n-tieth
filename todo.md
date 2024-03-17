@@ -9,6 +9,7 @@
 - [x] Unit
   - [x] Move units on the map
   - [x] Make the difference between cops and thief
+  - [ ] Thief's path to the center
 - [x] Game
   - [x] Main game loop
   - [x] End the game when the thief comes back to the middle of the map
@@ -17,4 +18,4 @@
   - [ ] Game tree
     - [x] Loop over all possible moves for the cops or the thief
     - [ ] Evaluate a game state (game map)
-  - [ ] Minimax algorithm
+  - [x] Minimax algorithm
