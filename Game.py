@@ -7,19 +7,33 @@ class Game:
         self._map = Map()
 
     def start(self):
-        should_stop = False
-        while not should_stop:
+        game_stopped = False
+        thief_escaped = False
+        thief_can_move = True
+
+        while not game_stopped and not thief_escaped and thief_can_move:
             print()
             self._map.draw()
             print()
-            should_stop = self.ask_user_action()
+            game_stopped = self.ask_user_action()
+            thief_escaped = self._map.thief.escaped()
+            thief_can_move = self._map.thief.can_move()
+
+        print()
+        self._map.draw()
+        print()
+
+        if game_stopped:
+            print("\nAu revoir !\n")
+        elif thief_escaped:
+            print("\nLe voleur s'est échappé !")
+        else:
+            print("\nLe voleur a été capturé !\n")
 
     def get_available_options(self):
         options = ['Q']
-        thief_location = self._map.thief.location
-        for edges in thief_location.neighbors:
-            if not edges.is_occupied():
-                options.append(str(edges.number))
+        for edges in self._map.thief.possible_paths():
+            options.append(str(edges.number))
         return options
 
     def ask_user_action(self):

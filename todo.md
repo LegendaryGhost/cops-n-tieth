@@ -11,8 +11,8 @@
   - [x] Make the difference between cops and thief
 - [x] Game
   - [x] Main game loop
-  - [ ] End the game when the thief comes back to the middle of the map
-  - [ ] End the game when the thief can't move anymore
+  - [x] End the game when the thief comes back to the middle of the map
+  - [x] End the game when the thief can't move anymore
 - [ ] Cops bot
   - [ ] Game tree
   - [ ] Minimax algorithm
