@@ -17,6 +17,9 @@ class Game:
             print()
             game_stopped = self.ask_user_action()
             thief_escaped = self._map.thief.escaped()
+            if game_stopped or thief_escaped:
+                break
+            self.move_cops()
             thief_can_move = self._map.thief.can_move()
 
         print()
@@ -59,3 +62,9 @@ class Game:
         ending_edge_num = int(choice)
         self._map.move_unit(starting_edge_num, ending_edge_num)
         return False
+
+    def move_cops(self):
+        for move in self._map.thief_moves():
+            print()
+            move.draw()
+            print()

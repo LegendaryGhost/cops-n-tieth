@@ -6,13 +6,13 @@ from unit.Thief import Thief
 
 class Map:
 
-    def __init__(self):
+    def __init__(self, cop1_pos=5, cop2_pos=9, cop3_pos=11, thief_pos=10):
         self._graph = None
-        self._cops = [Cop() for i in range(3)]
+        self._cops = [Cop() for _ in range(3)]
         self._thief = Thief()
-        self.set_up_graph()
+        self.set_up_graph(cop1_pos, cop2_pos, cop3_pos, thief_pos)
 
-    def set_up_graph(self):
+    def set_up_graph(self, cop1_pos, cop2_pos, cop3_pos, thief_pos):
         edges = []
         for i in range(0, 21):
             edges.append(Edge(i))
@@ -110,14 +110,14 @@ class Map:
         edges[20].add_neighbor(edges[19])
         edges[20].add_neighbor(edges[17])
 
-        edges[5].unit = self._cops[0]
-        self._cops[0].location = edges[5]
-        edges[9].unit = self._cops[1]
-        self._cops[1].location = edges[9]
-        edges[11].unit = self._cops[2]
-        self._cops[2].location = edges[11]
-        edges[10].unit = self._thief
-        self._thief.location = edges[10]
+        edges[cop1_pos].unit = self._cops[0]
+        self._cops[0].location = edges[cop1_pos]
+        edges[cop2_pos].unit = self._cops[1]
+        self._cops[1].location = edges[cop2_pos]
+        edges[cop3_pos].unit = self._cops[2]
+        self._cops[2].location = edges[cop3_pos]
+        edges[thief_pos].unit = self._thief
+        self._thief.location = edges[thief_pos]
 
         self._graph = Graph(edges)
 
@@ -162,3 +162,31 @@ class Map:
     @property
     def thief(self):
         return self._thief
+
+    def cops_moves(self):
+        moves = []
+        thief_pos = self.thief.location.number
+        for index in range(len(self._cops)):
+            cops_pos = [
+                self._cops[0].location.number,
+                self._cops[1].location.number,
+                self._cops[2].location.number
+            ]
+            for edge in self._cops[index].possible_paths():
+                cops_pos[index] = edge.number
+                moves.append(Map(cops_pos[0], cops_pos[1], cops_pos[2], thief_pos))
+
+        return moves
+
+    def thief_moves(self):
+        moves = []
+        cops_pos = [
+            self._cops[0].location.number,
+            self._cops[1].location.number,
+            self._cops[2].location.number
+        ]
+        for edge in self.thief.possible_paths():
+            thief_pos = edge.number
+            moves.append(Map(cops_pos[0], cops_pos[1], cops_pos[2], thief_pos))
+
+        return moves

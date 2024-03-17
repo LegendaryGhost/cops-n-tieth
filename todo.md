@@ -15,4 +15,6 @@
   - [x] End the game when the thief can't move anymore
 - [ ] Cops bot
   - [ ] Game tree
+    - [x] Loop over all possible moves for the cops or the thief
+    - [ ] Evaluate a game state (game map)
   - [ ] Minimax algorithm
