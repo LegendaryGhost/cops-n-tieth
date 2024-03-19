@@ -1,5 +1,3 @@
-from math import inf
-
 from map.Edge import Edge
 from map.Graph import Graph
 from unit.Cop import Cop
@@ -199,16 +197,23 @@ class Map:
 
     def evaluate(self):
         if not self._thief.can_move:
-            return inf
+            return 10000
 
         if self._thief.escaped:
-            return -inf
+            return -10000
 
         score = 0
+        # The cops receive a malus if they are far from the thief (-1 / edge)
         for cop in self._cops:
             score -= len(cop.path_to(self, self._thief.location)) - 1
 
+        # The cops receive a malus for each edge the thief can move to (-10 / edge)
         score -= len(self._thief.possible_paths) * 10
-        # score -= len(self._thief.path_to(self, self._graph.edges[Thief.center])) - 1
+
+        # The cops receive a bonus depending on the distance of the thief to the center (+100 / edge)
+        step_to_center = len(self._thief.path_to(self, self._graph.edges[Thief.center])) - 1
+        if step_to_center == 0:
+            step_to_center = 10
+        score += step_to_center * 100
 
         return score

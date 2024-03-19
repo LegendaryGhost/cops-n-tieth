@@ -77,7 +77,12 @@ class Game:
 
     def minimax(self, map_state: Map, depth, should_maximize):
         if depth == 0 or not map_state.thief.can_move or map_state.thief.escaped:
-            return map_state.evaluate()
+            score = map_state.evaluate()
+            if should_maximize:
+                score -= depth
+            else:
+                score += depth
+            return score
 
         if should_maximize:
             value = -inf

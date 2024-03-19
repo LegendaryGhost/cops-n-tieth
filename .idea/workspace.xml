@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="42f562a8-74d9-467c-b1ee-774a0dc9b20b" name="Changes" comment="Possible move loop">
+    <list default="true" id="42f562a8-74d9-467c-b1ee-774a0dc9b20b" name="Changes" comment="No general path block cops bot">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Game.py" beforeDir="false" afterPath="$PROJECT_DIR$/Game.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/map/Edge.py" beforeDir="false" afterPath="$PROJECT_DIR$/map/Edge.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/map/Map.py" beforeDir="false" afterPath="$PROJECT_DIR$/map/Map.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/todo.md" beforeDir="false" afterPath="$PROJECT_DIR$/todo.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/unit/Thief.py" beforeDir="false" afterPath="$PROJECT_DIR$/unit/Thief.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/unit/Unit.py" beforeDir="false" afterPath="$PROJECT_DIR$/unit/Unit.py" afterDir="false" />
     </list>
@@ -40,14 +38,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.main.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="copsNTieth" />
@@ -128,7 +126,15 @@
       <option name="project" value="LOCAL" />
       <updated>1710689033451</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="No general path block cops bot">
+      <option name="closed" value="true" />
+      <created>1710704685321</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1710704685321</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -148,7 +154,8 @@
     <MESSAGE value="Game's main loop" />
     <MESSAGE value="Gameover system" />
     <MESSAGE value="Possible move loop" />
-    <option name="LAST_COMMIT_MESSAGE" value="Possible move loop" />
+    <MESSAGE value="No general path block cops bot" />
+    <option name="LAST_COMMIT_MESSAGE" value="No general path block cops bot" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

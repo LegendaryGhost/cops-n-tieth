@@ -29,6 +29,7 @@ class Unit:
         # Mark the edges unvisited
         for edge in game_map.graph.edges:
             edge.visited = False
+            edge.previous = None
 
         # BFS algorithm
         queue = Queue()

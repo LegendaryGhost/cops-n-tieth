@@ -5,7 +5,7 @@ class Thief(Unit):
     center: int = 10
 
     def __str__(self):
-        return 'T '
+        return 'V '
 
     @property
     def escaped(self):
