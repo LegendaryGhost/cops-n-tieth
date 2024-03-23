@@ -178,7 +178,7 @@ class Map:
             ]
             for edge in self._cops[index].possible_paths:
                 cops_pos[index] = edge.number
-                moves.append(Map(cops_pos[0], cops_pos[1], cops_pos[2], thief_pos))
+                moves.append(GameState(cops_pos[0], cops_pos[1], cops_pos[2], thief_pos))
 
         return moves
 
@@ -191,7 +191,7 @@ class Map:
         ]
         for edge in self._thief.possible_paths:
             thief_pos = edge.number
-            moves.append(Map(cops_pos[0], cops_pos[1], cops_pos[2], thief_pos))
+            moves.append(GameState(cops_pos[0], cops_pos[1], cops_pos[2], thief_pos))
 
         return moves
 
@@ -217,3 +217,55 @@ class Map:
         score += step_to_center * 100
 
         return score
+
+    def set_positions(self, cop1_pos, cop2_pos, cop3_pos, thief_pos):
+        edges = self._graph.edges
+        for edge in edges:
+            edge.unit = None
+
+        edges[cop1_pos].unit = self._cops[0]
+        self._cops[0].location = edges[cop1_pos]
+        edges[cop2_pos].unit = self._cops[1]
+        self._cops[1].location = edges[cop2_pos]
+        edges[cop3_pos].unit = self._cops[2]
+        self._cops[2].location = edges[cop3_pos]
+        edges[thief_pos].unit = self._thief
+        self._thief.location = edges[thief_pos]
+
+
+class GameState:
+    projection_map = Map()
+
+    def __init__(self, cop1_pos, cop2_pos, cop3_pos, thief_pos):
+        self._cop1_pos = cop1_pos
+        self._cop2_pos = cop2_pos
+        self._cop3_pos = cop3_pos
+        self._thief_pos = thief_pos
+
+    @property
+    def evaluate(self):
+        GameState.projection_map.set_positions(self._cop1_pos, self._cop2_pos, self._cop3_pos, self._thief_pos)
+        return GameState.projection_map.evaluate()
+
+    @property
+    def thief_moves(self):
+        GameState.projection_map.set_positions(self._cop1_pos, self._cop2_pos, self._cop3_pos, self._thief_pos)
+        return GameState.projection_map.thief_moves()
+
+    @property
+    def cops_moves(self):
+        GameState.projection_map.set_positions(self._cop1_pos, self._cop2_pos, self._cop3_pos, self._thief_pos)
+        return GameState.projection_map.cops_moves()
+
+    def to_map(self):
+        return Map(self._cop1_pos, self._cop2_pos, self._cop3_pos, self._thief_pos)
+
+    @property
+    def thief_can_move(self):
+        GameState.projection_map.set_positions(self._cop1_pos, self._cop2_pos, self._cop3_pos, self._thief_pos)
+        return GameState.projection_map.thief.can_move
+
+    @property
+    def thief_escaped(self):
+        GameState.projection_map.set_positions(self._cop1_pos, self._cop2_pos, self._cop3_pos, self._thief_pos)
+        return GameState.projection_map.thief.escaped

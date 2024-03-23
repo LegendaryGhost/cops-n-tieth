@@ -1,6 +1,6 @@
 from math import inf
 
-from map.Map import Map
+from map.Map import Map, GameState
 
 
 class Game:
@@ -73,11 +73,11 @@ class Game:
             if score > correct_move_score:
                 correct_move = move
                 correct_move_score = score
-        self._map = correct_move
+        self._map = correct_move.to_map()
 
-    def minimax(self, map_state: Map, depth, should_maximize):
-        if depth == 0 or not map_state.thief.can_move or map_state.thief.escaped:
-            score = map_state.evaluate()
+    def minimax(self, map_state: GameState, depth, should_maximize):
+        if depth == 0 or not map_state.thief_can_move or map_state.thief_escaped:
+            score = map_state.evaluate
             if should_maximize:
                 score -= depth
             else:
@@ -86,11 +86,11 @@ class Game:
 
         if should_maximize:
             value = -inf
-            for move in map_state.cops_moves():
+            for move in map_state.cops_moves:
                 value = max(value, self.minimax(move, depth - 1, False))
             return value
         else:
             value = inf
-            for move in map_state.thief_moves():
+            for move in map_state.thief_moves:
                 value = min(value, self.minimax(move, depth - 1, True))
             return value
