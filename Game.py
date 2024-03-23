@@ -1,39 +1,69 @@
 from math import inf
-
 from map.Map import Map, GameState
+import pygame as pg
 
 
 class Game:
 
     def __init__(self):
         self._map = Map()
+        self.SCREEN_WIDTH = 640
+        self.SCREEN_HEIGHT = 480
+
+        # Initialise pygame
+        pg.init()
+
+        self._window = pg.display.set_mode([self.SCREEN_WIDTH, self.SCREEN_HEIGHT])
+        # Set the window name
+        pg.display.set_caption('Cops and thief')
 
     def start(self):
-        game_stopped = False
-        thief_escaped = False
-        thief_can_move = True
+        # Main loop, run until window closed
+        running = True
+        while running:
 
-        while not game_stopped and not thief_escaped and thief_can_move:
-            print()
-            self._map.draw()
-            print()
-            game_stopped = self.ask_user_action()
-            thief_escaped = self._map.thief.escaped
-            if game_stopped or thief_escaped:
-                break
-            self.move_cops()
-            thief_can_move = self._map.thief.can_move
+            # Check events
+            for event in pg.event.get():
+                if event.type == pg.QUIT:
+                    running = False
 
-        print()
-        self._map.draw()
-        print()
+            # Clear the window
+            self._window.fill((0, 0, 0))
 
-        if game_stopped:
-            print("\nAu revoir !\n")
-        elif thief_escaped:
-            print("\nLe voleur s'est échappé !")
-        else:
-            print("\nLe voleur a été capturé !\n")
+            self._map.draw(self._window, self.SCREEN_WIDTH, self.SCREEN_HEIGHT)
+
+            # Update the display
+            pg.display.update()
+
+        # close pygame
+        pg.quit()
+
+        # TODO: Delete this old code
+        # game_stopped = False
+        # thief_escaped = False
+        # thief_can_move = True
+        #
+        # while not game_stopped and not thief_escaped and thief_can_move:
+        #     print()
+        #     self._map.draw()
+        #     print()
+        #     game_stopped = self.ask_user_action()
+        #     thief_escaped = self._map.thief.escaped
+        #     if game_stopped or thief_escaped:
+        #         break
+        #     self.move_cops()
+        #     thief_can_move = self._map.thief.can_move
+        #
+        # print()
+        # self._map.draw()
+        # print()
+        #
+        # if game_stopped:
+        #     print("\nAu revoir !\n")
+        # elif thief_escaped:
+        #     print("\nLe voleur s'est échappé !")
+        # else:
+        #     print("\nLe voleur a été capturé !\n")
 
     def get_available_options(self):
         options = ['Q']

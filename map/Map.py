@@ -1,7 +1,9 @@
+import math
 from map.Edge import Edge
 from map.Graph import Graph
 from unit.Cop import Cop
 from unit.Thief import Thief
+import pygame as pg
 
 
 class Map:
@@ -121,29 +123,72 @@ class Map:
 
         self._graph = Graph(edges)
 
-    def draw(self):
-        edges = self._graph.edges
+    def draw(self, window, screen_width, screen_height):
+        outer_circle_center = (screen_width / 2, screen_height / 2)
+        outer_circle_radius = 200
+        inner_circle_radius = 75
+        line_color = (255, 255, 255)
+        line_width = 1
 
-        print('            ' + str(edges[0]) + '----' + str(edges[1]) + '----' + str(edges[2]))
-        print('          /   \\   |   /   \\')
-        print('        /       \\ | /       \\')
-        print('      /           ' + str(edges[3]) + '          \\')
-        print('    /             |             \\')
-        print('  /               |               \\')
-        print(str(edges[4]) + '                ' + str(edges[5]) + '                ' + str(edges[6]))
-        print('| \\             / | \\             / |')
-        print('|   \\         /   |   \\         /   |')
-        print(str(edges[7]) + '----' + str(edges[8]) + '----' + str(edges[9]) + '----' + str(edges[10]) + '----'
-              + str(edges[11]) + '----' + str(edges[12]) + '----' + str(edges[13]))
-        print('|   /         \\   |   /         \\   |')
-        print('| /             \\ | /             \\ |')
-        print(str(edges[14]) + '                ' + str(edges[15]) + '                ' + str(edges[16]))
-        print('  \\               |               /')
-        print('    \\             |             /')
-        print('      \\           ' + str(edges[17]) + '          /')
-        print('        \\       / | \\       /')
-        print('          \\   /   |   \\   /')
-        print('            ' + str(edges[18]) + '----' + str(edges[19]) + '----' + str(edges[20]))
+        # Calculate the start and end points for the vertical line
+        vertical_start = (outer_circle_center[0] - outer_circle_radius, outer_circle_center[1])
+        vertical_end = (outer_circle_center[0] + outer_circle_radius, outer_circle_center[1])
+
+        # Draw the vertical line
+        pg.draw.line(window, line_color, vertical_start, vertical_end, line_width)
+
+        # Calculate the start and end points for the horizontal line
+        horizontal_start = (outer_circle_center[0], outer_circle_center[1] - outer_circle_radius)
+        horizontal_end = (outer_circle_center[0], outer_circle_center[1] + outer_circle_radius)
+
+        # Draw the horizontal line
+        pg.draw.line(window, line_color, horizontal_start, horizontal_end, line_width)
+
+        # Draw the big outer circle
+        pg.draw.circle(window, line_color, outer_circle_center, outer_circle_radius, line_width)
+
+        # Draw the small inner circle
+        pg.draw.circle(window, line_color, outer_circle_center, inner_circle_radius, line_width)
+
+        # Top arc
+        top_rect = pg.Rect(
+            outer_circle_center[0] - inner_circle_radius,
+            outer_circle_center[1] - inner_circle_radius - outer_circle_radius,
+            inner_circle_radius * 2,
+            inner_circle_radius * 2
+        )
+        pg.draw.arc(window, line_color, top_rect, math.radians(190), math.radians(350), line_width)
+
+        # Right arc
+        right_rect = pg.Rect(
+            outer_circle_center[0] - inner_circle_radius + outer_circle_radius,
+            outer_circle_center[1] - inner_circle_radius,
+            inner_circle_radius * 2,
+            inner_circle_radius * 2
+        )
+        pg.draw.arc(window, line_color, right_rect, math.radians(100), math.radians(260), line_width)
+
+        # Bottom arc
+        bottom_rect = pg.Rect(
+            outer_circle_center[0] - inner_circle_radius,
+            outer_circle_center[1] - inner_circle_radius + outer_circle_radius,
+            inner_circle_radius * 2,
+            inner_circle_radius * 2
+        )
+        pg.draw.arc(window, line_color, bottom_rect, math.radians(10), math.radians(170), line_width)
+
+        # Left circle
+        left_rect = pg.Rect(
+            outer_circle_center[0] - inner_circle_radius - outer_circle_radius,
+            outer_circle_center[1] - inner_circle_radius,
+            inner_circle_radius * 2,
+            inner_circle_radius * 2
+        )
+        pg.draw.arc(window, line_color, left_rect, math.radians(280), math.radians(80), line_width)
+
+        # Draw the edges
+        for edge in self._graph.edges:
+            edge.draw(window)
 
     def move_unit(self, starting_edge_num: int, ending_edge_num: int):
         starting_edge = self._graph.edges[starting_edge_num]
