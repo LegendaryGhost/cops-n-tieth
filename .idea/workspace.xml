@@ -4,11 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="42f562a8-74d9-467c-b1ee-774a0dc9b20b" name="Changes" comment="Final terminal version">
+    <list default="true" id="42f562a8-74d9-467c-b1ee-774a0dc9b20b" name="Changes" comment="Map shape drawn">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Game.py" beforeDir="false" afterPath="$PROJECT_DIR$/Game.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/map/Edge.py" beforeDir="false" afterPath="$PROJECT_DIR$/map/Edge.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/map/Map.py" beforeDir="false" afterPath="$PROJECT_DIR$/map/Map.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/todo.md" beforeDir="false" afterPath="$PROJECT_DIR$/todo.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unit/Thief.py" beforeDir="false" afterPath="$PROJECT_DIR$/unit/Thief.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unit/Unit.py" beforeDir="false" afterPath="$PROJECT_DIR$/unit/Unit.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -151,7 +153,15 @@
       <option name="project" value="LOCAL" />
       <updated>1711177400486</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Map shape drawn">
+      <option name="closed" value="true" />
+      <created>1711204573350</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1711204573350</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -174,7 +184,8 @@
     <MESSAGE value="No general path block cops bot" />
     <MESSAGE value="Cops bot with a notion of speed" />
     <MESSAGE value="Final terminal version" />
-    <option name="LAST_COMMIT_MESSAGE" value="Final terminal version" />
+    <MESSAGE value="Map shape drawn" />
+    <option name="LAST_COMMIT_MESSAGE" value="Map shape drawn" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

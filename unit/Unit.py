@@ -1,7 +1,11 @@
 from queue import Queue
+import pygame as pg
 
 
 class Unit:
+    color = (255, 0, 0)
+    radius = 10
+
     def __init__(self):
         self._location = None
 
@@ -53,3 +57,6 @@ class Unit:
             current_edge = current_edge.previous
 
         return path
+
+    def draw(self, window):
+        pg.draw.circle(window, Unit.color, self._location.coordinate, Unit.radius)

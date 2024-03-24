@@ -1,8 +1,14 @@
+import math
+from typing import Tuple
 from unit.Unit import Unit
+import pygame as pg
 
 
 class Edge:
-    def __init__(self, number: int, neighbors: list = None):
+    radius = 12
+    color = (255, 255, 255)
+
+    def __init__(self, number: int, neighbors: list = None, coordinate: Tuple[float, float] = (0, 0)):
         if neighbors is None:
             neighbors = []
         self._number = number
@@ -10,6 +16,15 @@ class Edge:
         self._unit = None
         self._visited = False
         self._previous = None
+        self._coordinate = coordinate
+
+    @property
+    def coordinate(self):
+        return self._coordinate
+
+    @coordinate.setter
+    def coordinate(self, coordinate: Tuple[float, float]):
+        self._coordinate = coordinate
 
     @property
     def number(self):
@@ -67,3 +82,13 @@ class Edge:
         if self.is_occupied:
             return str(self._unit)
         return str(self._number).zfill(2)
+
+    def draw(self, window):
+        pg.draw.circle(window, Edge.color, self._coordinate, Edge.radius)
+        if self._unit is not None:
+            self._unit.draw(window)
+
+    def clicked_inside(self, mouse_pos):
+        distance = math.sqrt(
+            (mouse_pos[0] - self._coordinate[0]) ** 2 + (mouse_pos[1] - self._coordinate[1]) ** 2)
+        return distance <= Edge.radius
